@@ -9,12 +9,12 @@
 </head>
 
 <body>
-   <div class="box">
+   <div class="box" data-images='["images/img-1.png", "images/img-2.png", "images/img-3.png", "images/img-4.png"]'>
       <h2>Scroll To Change Background</h2>
    </div>
    <script>
       let box = document.querySelector(".box");
-      let images = ['images/img-1.png', 'images/img-2.png', 'images/img-3.png', 'images/img-4.png'];
+      let images = JSON.parse(box.getAttribute('data-images'));
       let lastNumber;
       window.addEventListener('scrollend', () => {
          let newNumber;
