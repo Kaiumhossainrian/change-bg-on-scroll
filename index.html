@@ -13,17 +13,46 @@
       <h2>Scroll To Change Background</h2>
    </div>
    <script>
-      let box = document.querySelector(".box");
-      let images = JSON.parse(box.getAttribute('data-images'));
-      let lastNumber;
-      window.addEventListener('scrollend', () => {
-         let newNumber;
-         do {
-            newNumber = Math.floor(Math.random() * images.length);
-         } while (newNumber === lastNumber);
-         lastNumber = newNumber;
-         box.style.backgroundImage = `url(${images[newNumber]})`;
-      })
+
+      /* This code is for every scroll */
+
+      // let box = document.querySelector(".box");
+      // let images = JSON.parse(box.getAttribute('data-images'));
+      // let lastNumber;
+      // window.addEventListener('scrollend', () => {
+      //    let newNumber;
+      //    do {
+      //       newNumber = Math.floor(Math.random() * images.length);
+      //    } while (newNumber === lastNumber);
+      //    lastNumber = newNumber;
+      //    box.style.backgroundImage = `url(${images[newNumber]})`;
+      // })
+
+      /* This code is for every scroll End */
+
+      document.addEventListener('DOMContentLoaded', () => {
+         const box = document.querySelector(".box");
+         const images = JSON.parse(box.getAttribute('data-images'));
+         let lastNumber;
+         let lastScrollY = window.scrollY;
+
+         window.addEventListener('scroll', () => {
+               const scrollY = window.scrollY;
+               const windowHeight = window.innerHeight;
+               const scrollThreshold = Math.round(scrollY / windowHeight);
+
+               if (scrollThreshold !== Math.round(lastScrollY / windowHeight)) {
+                  let newNumber;
+                  do {
+                     newNumber = Math.floor(Math.random() * images.length);
+                  } while (newNumber === lastNumber);
+                  lastNumber = newNumber;
+                  box.style.backgroundImage = `url(${images[newNumber]})`;
+               }
+               lastScrollY = scrollY;
+         });
+      });
+
    </script>
 </body>
 
