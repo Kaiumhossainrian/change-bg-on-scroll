@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+   <div class="box">
+      <h2>Scroll To Change Background</h2>
+   </div>
+   <script>
+      let box = document.querySelector(".box");
+      let images = ['images/img-1.png', 'images/img-2.png', 'images/img-3.png', 'images/img-4.png'];
+      let lastNumber;
+      window.addEventListener('scrollend', () => {
+         let newNumber;
+         do {
+            newNumber = Math.floor(Math.random() * images.length);
+         } while (newNumber === lastNumber);
+         lastNumber = newNumber;
+         box.style.backgroundImage = `url(${images[newNumber]})`;
+      })
+   </script>
+</body>
+
+</html>
